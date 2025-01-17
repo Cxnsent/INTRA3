@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChargeHERO - E-Auto Akkuhilfe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <link rel="icon" type="image/png" href="image.png">
+</head>
+
+<body>
+  <header>
+    <h1>ChargeHERO</h1>
+    <nav>
+      <a href="#map">Karte</a>
+      <a href="#abo">Abos</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="video-container">
+      <video id="video" src="video2.mp4" autoplay muted loop></video>
+    </div>
+    <div class="hero-overlay">
+      <h2>Willkommen bei ChargeHERO</h2>
+      <p>Ihre zuverlässige Akkuhilfe für Elektroautos - Europaweit und darüber hinaus!</p>
+    </div>
+  </section>
+
+  <section id="map-section" class="map-section">
+    <div class="sidebar">
+      <div class="button-container">
+        <button id="btnEuropa" class="region-button" onclick="selectBundle(this, 100)">Europa</button>
+        <button id="btnAsien" class="region-button" onclick="selectBundle(this, 100)">Asien</button>
+        <button id="btnNordamerika" class="region-button" onclick="selectBundle(this, 100)">Nordamerika</button>
+        <button id="btnSuedamerika" class="region-button" onclick="selectBundle(this, 100)">Südamerika</button>
+        <button id="btnOzeanien" class="region-button" onclick="selectBundle(this, 100)">Ozeanien</button>
+        <button id="btnCustom" class="region-button" onclick="selectBundle(this, 100)">Custom</button>
+      </div>
+      <div id="price-display" class="price-display">Preis: 0 €</div>
+      <div id="country-list">Keine Länder ausgewählt.</div>
+    </div>
+    <div id="map"></div>
+  </section>
+
+  <section class="form-section">
+    <h4>Formular</h4>
+    <form>
+      <div class="form-row">
+        <label for="lastname">Nachname</label>
+        <input type="text" id="lastname" name="lastname">
+      </div>
+      <div class="form-row">
+        <label for="firstname">Vorname</label>
+        <input type="text" id="firstname" name="firstname">
+      </div>
+      <div class="form-row">
+        <label for="company">Firma</label>
+        <input type="text" id="company" name="company">
+      </div>
+      <div class="form-row">
+        <label for="city">Stadt</label>
+        <input type="text" id="city" name="city">
+      </div>
+      <div class="form-row">
+        <label for="zipcode">PLZ</label>
+        <input type="text" id="zipcode" name="zipcode">
+      </div>
+      <div class="form-row">
+        <label for="address">Adresse</label>
+        <input type="text" id="address" name="address">
+      </div>
+      <div class="form-row">
+        <label for="mail">E-Mail Adresse</label>
+        <input type="text" id="email" name="email">
+      </div>
+      <div class="form-row">
+        <label for="number">Tel. Nummer</label>
+        <input type="text" id="number" name="number">
+      </div>
+      <div class="form-row">
+        <label for="insurance">Bestehende Versicherung</label>
+        <select id="insurance" name="insurance">
+          <option value="adac">ADAC</option>
+          <option value="allianz">Allianz</option>
+          <option value="axa">AXA</option>
+          <option value="hdm">HDI</option>
+          <option value="USeagle">US EAGLE</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="subscription-length">Abonnement Dauer</label>
+        <input type="range" id="subscription-length" name="subscription-length" min="1" max="12" value="6" oninput="document.getElementById('subscription-months').value = this.value">
+        <input type="number" id="subscription-months" name="subscription-months" min="1" max="12" value="6" oninput="document.getElementById('subscription-length').value = this.value">
+      </div>
+      <div class="form-row">
+        <input type="checkbox" id="enterprise" name="enterprise">
+        <label for="enterprise">Enterprise Version für Unternehmen</label>
+      </div>
+      <div class="form-row">
+        <label for="payment">Zahlungsmethode</label>
+        <select id="payment" name="payment">
+          <option value="credit_card">Kreditkarte</option>
+          <option value="paypal">PayPal</option>
+          <option value="sepa">SEPA-Lastschrift</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <input type="checkbox" id="agb" name="agb">
+        <label for="agb">Ich stimme den AGBs zu</label>
+      </div>
+      <button type="submit">Bezahlen</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="insurance-slider">
+      <img src="adac.png" alt="ADAC">
+      <img src="allianz.png" alt="Allianz">
+      <img src="axa.png" alt="AXA">
+      <img src="hdi.png" alt="HDI">
+    </div>
+    <p>© 2025 ChargeHERO. Alle Rechte vorbehalten.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
