@@ -205,7 +205,36 @@ const regionCountries = {
       "Vanuatu"
     ]
   };
-  
+
+function selectCountry(feature, layer) {
+  const countryName = feature.properties.name;
+  if (!customCountries.includes(countryName)) {
+    customCountries.push(countryName);
+    totalCustomPrice += 15;
+    updatePrice(totalCustomPrice);
+    updateCountryList(customCountries);
+  }
+  layer.setStyle({
+    color: 'blue',
+    weight: 3,
+    fillOpacity: 0.3
+  });
+}
+
+function selectCountry(feature, layer) {
+  const countryName = feature.properties.name;
+  if (!customCountries.includes(countryName)) {
+    customCountries.push(countryName);
+    totalCustomPrice += 15;
+    updatePrice(totalCustomPrice);
+    updateCountryList(customCountries);
+  }
+  layer.setStyle({
+    color: 'blue',
+    weight: 3,
+    fillOpacity: 0.3
+  });
+}
 
 // GeoJSON
 fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
@@ -290,4 +319,20 @@ function resetSelection() {
 function updatePrice(price) {
   const priceDisplay = document.getElementById('price-display');
   priceDisplay.textContent = `Preis: ${price} €`;
+}
+function selectBundle(element, price) {
+  resetSelection();
+  document.querySelectorAll('.region-button').forEach(b => b.classList.remove('selected'));
+  element.classList.add('selected');
+  highlightRegion(element.dataset.region);
+  updatePrice(price);
+  updateCountryList(regionCountries[element.dataset.region]);
+}
+
+function selectCustom(element) {
+  resetSelection();
+  document.querySelectorAll('.region-button').forEach(b => b.classList.remove('selected'));
+  element.classList.add('selected');
+  document.getElementById('map').classList.add('active');
+  updatePrice(40);
 }
